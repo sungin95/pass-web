@@ -1,3 +1,6 @@
+# yaml 파일에 DB 정보가 들어있어서 공유 X
+/src/main/resources/application.yaml
+
 HELP.md
 .gradle
 build/
