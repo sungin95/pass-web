@@ -1,4 +1,4 @@
-package com.fastcampus.pass.contoller.pass;
+package com.fastcampus.pass.controller.pass;
 
 import com.fastcampus.pass.service.pass.Pass;
 import com.fastcampus.pass.service.pass.PassService;
