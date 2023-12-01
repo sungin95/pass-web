@@ -1,4 +1,4 @@
-package com.fastcampus.pass.contoller.admin;
+package com.fastcampus.pass.controller.admin;
 
 import com.fastcampus.pass.service.packaze.PackageService;
 import com.fastcampus.pass.service.pass.BulkPassService;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import com.fastcampus.pass.contoller.admin.BulkPassRequest;
 
 import java.time.LocalDateTime;
 

@@ -1,6 +1,6 @@
 package com.fastcampus.pass.service.pass;
 
-import com.fastcampus.pass.contoller.admin.BulkPassRequest;
+import com.fastcampus.pass.controller.admin.BulkPassRequest;
 import com.fastcampus.pass.repository.pass.BulkPassEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;

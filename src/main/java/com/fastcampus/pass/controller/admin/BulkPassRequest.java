@@ -1,4 +1,4 @@
-package com.fastcampus.pass.contoller.admin;
+package com.fastcampus.pass.controller.admin;
 
 import com.fastcampus.pass.util.LocalDateTimeUtils;
 import lombok.Getter;
