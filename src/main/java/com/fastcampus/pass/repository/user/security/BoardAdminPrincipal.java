@@ -23,8 +23,7 @@ public record BoardAdminPrincipal(
 //        return BoardAdminPrincipal.of(userId, password, nickname); //  roleTypes, Map.of()
 //    }
 
-    public static BoardAdminPrincipal of(String userId, String password, String nickname) { // , Set<RoleType> roleTypes  Map<String, Object> oAuth2Attributes
-        Set<RoleType> roleTypes = Set.of(RoleType.USER);
+    public static BoardAdminPrincipal of(String userId, String password, String nickname, Set<RoleType> roleTypes) { //   Map<String, Object> oAuth2Attributes
 
         return new BoardAdminPrincipal(
                 userId,
@@ -42,8 +41,8 @@ public record BoardAdminPrincipal(
         return BoardAdminPrincipal.of(
                 dto.userId(),
                 dto.userPassword(),
-                dto.nickname()
-//                dto.roleTypes()
+                dto.nickname(),
+                dto.roleTypes()
         );
     }
 
