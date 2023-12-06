@@ -16,14 +16,14 @@ public record BoardAdminPrincipal(
         String userId,
         String password,
         String nickname,
-        Collection<? extends GrantedAuthority> authorities
-//        Map<String, Object> oAuth2Attributes
-) implements UserDetails {
-//    public static BoardAdminPrincipal of(String userId, String password, String nickname) { //, Set<RoleType> roleTypes
-//        return BoardAdminPrincipal.of(userId, password, nickname); //  roleTypes, Map.of()
-//    }
+        Collection<? extends GrantedAuthority> authorities,
+        Map<String, Object>oAuth2Attributes
+) implements UserDetails, OAuth2User {
+    public static BoardAdminPrincipal of(String userId, String password, String nickname, Set<RoleType> roleTypes) {
+        return BoardAdminPrincipal.of(userId, password, nickname, roleTypes, Map.of());
+    }
 
-    public static BoardAdminPrincipal of(String userId, String password, String nickname, Set<RoleType> roleTypes) { //   Map<String, Object> oAuth2Attributes
+    public static BoardAdminPrincipal of(String userId, String password, String nickname, Set<RoleType> roleTypes, Map<String, Object> oAuth2Attributes) {
 
         return new BoardAdminPrincipal(
                 userId,
@@ -32,8 +32,8 @@ public record BoardAdminPrincipal(
                 roleTypes.stream()
                         .map(RoleType::getRoleName)
                         .map(SimpleGrantedAuthority::new)
-                        .collect(Collectors.toUnmodifiableSet())
-//                oAuth2Attributes
+                        .collect(Collectors.toUnmodifiableSet()),
+                oAuth2Attributes
         );
     }
 
@@ -94,15 +94,15 @@ public record BoardAdminPrincipal(
         return true;
     }
 
-//    @Override
-//    public Map<String, Object> getAttributes() {
-//        return oAuth2Attributes;
-//    }
-//
-//
-//    @Override
-//    public String getName() {
-//        return userId;
-//    }
+    @Override
+    public Map<String, Object> getAttributes() {
+        return oAuth2Attributes;
+    }
+
+
+    @Override
+    public String getName() {
+        return userId;
+    }
 
 }

@@ -25,7 +25,7 @@ public class UserService {
                 .map(UserDto::from);
     }
 
-    public UserDto saveUser(String userId, String userPassword, String email, String nickname, UserStatus status, Set<RoleType> roleTypes, String phone, Long remainingDaysAtGym, String meta) {
+    public UserDto saveUser(String userId, String userPassword, String email, String nickname, UserStatus status, Set<RoleType> roleTypes, String phone, Long remainingDaysAtGym) {
         return UserDto.from(userRepository.save(UserEntity.of(userId, userPassword, email, nickname, status, roleTypes, phone, remainingDaysAtGym)));
     }
 

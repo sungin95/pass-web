@@ -14,7 +14,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 @Entity
 @Table(
         name = "user",
@@ -30,7 +30,7 @@ public class UserEntity extends BaseEntity {
     private String userId;
 
     @Setter
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 100)
     private String userPassword;
 
     @Setter
@@ -76,7 +76,7 @@ public class UserEntity extends BaseEntity {
 
 
     public static UserEntity of(String userId, String userPassword, String email, String nickname, UserStatus status, Set<RoleType> roleTypes, String phone, Long remainingDaysAtGym) {
-        return UserEntity.of(userId, userPassword, email, nickname, status, roleTypes,phone, remainingDaysAtGym, null);
+        return UserEntity.of(userId, userPassword, email, nickname, status, roleTypes,phone, remainingDaysAtGym, userId);
     }
 
     public static UserEntity of(String userId, String userPassword, String email, String nickname, UserStatus status, Set<RoleType> roleTypes, String phone, Long remainingDaysAtGym, String createdBy) {

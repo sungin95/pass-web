@@ -60,46 +60,46 @@ public class SecurityConfig {
      * OAuth 2.0 기술을 이용한 인증 정보를 처리한다.
      * 카카오 인증 방식을 선택.
      *
-     * @param userService  게시판 서비스의 사용자 계정을 다루는 서비스 로직
+     * @param userService     게시판 서비스의 사용자 계정을 다루는 서비스 로직
      * @param passwordEncoder 패스워드 암호화 도구
      * @return {@link OAuth2UserService} OAuth2 인증 사용자 정보를 읽어들이고 처리하는 서비스 인스턴스 반환
      */
-//    @Bean
-//    public OAuth2UserService<OAuth2UserRequest, OAuth2User> oAuth2UserService(
-//            UserService userService,
-//            PasswordEncoder passwordEncoder
-//    ) {
-//        final DefaultOAuth2UserService delegate = new DefaultOAuth2UserService();
-//
-//        return userRequest -> {
-//            OAuth2User oAuth2User = delegate.loadUser(userRequest);
-//
-//            KakaoOAuth2Response kakaoResponse = KakaoOAuth2Response.from(oAuth2User.getAttributes());
-//            String registrationId = userRequest.getClientRegistration().getRegistrationId();
-//            String providerId = String.valueOf(kakaoResponse.id());
-//            String userId = registrationId + "_" + providerId;
-//            String dummyPassword = passwordEncoder.encode("{bcrypt}" + UUID.randomUUID());
-//            Set<RoleType> roleTypes = Set.of(RoleType.USER);
-//
-//            return userService.searchUser(userId)
-//                    .map(BoardAdminPrincipal::from)
-//                    .orElseGet(() ->
-//                            BoardAdminPrincipal.from(
-//                                    userService.saveUser(
-//                                            userId,
-//                                            dummyPassword,
-//                                            kakaoResponse.email(),
-//                                            kakaoResponse.nickname(),
-//                                            UserStatus.INACTIVE,
-//                                            roleTypes,
-//                                            null, //TODO: 카카오 로그인시 정보 수집 필요.
-//                                            0L,
-//                                            null
-//                                    )
-//                            )
-//                    );
-//        };
-//    }
+    @Bean
+    public OAuth2UserService<OAuth2UserRequest, OAuth2User> oAuth2UserService(
+            UserService userService,
+            PasswordEncoder passwordEncoder
+    ) {
+        final DefaultOAuth2UserService delegate = new DefaultOAuth2UserService();
+
+        return userRequest -> {
+            OAuth2User oAuth2User = delegate.loadUser(userRequest);
+
+            KakaoOAuth2Response kakaoResponse = KakaoOAuth2Response.from(oAuth2User.getAttributes());
+            String registrationId = userRequest.getClientRegistration().getRegistrationId();
+            String providerId = String.valueOf(kakaoResponse.id());
+            String userId = registrationId + "_" + providerId;
+            String dummyPassword = passwordEncoder.encode("{bcrypt}" + UUID.randomUUID());
+            Set<RoleType> roleTypes = Set.of(RoleType.USER);
+            System.out.println(dummyPassword);
+
+            return userService.searchUser(userId)
+                    .map(BoardAdminPrincipal::from)
+                    .orElseGet(() ->
+                            BoardAdminPrincipal.from(
+                                    userService.saveUser(
+                                            userId,
+                                            dummyPassword,
+                                            kakaoResponse.email(),
+                                            kakaoResponse.nickname(),
+                                            UserStatus.INACTIVE,
+                                            roleTypes,
+                                            "01012345678", //TODO: 카카오 로그인시 정보 수집 필요.
+                                            0L
+                                    )
+                            )
+                    );
+        };
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

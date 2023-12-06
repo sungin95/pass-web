@@ -57,19 +57,19 @@ CREATE TABLE `bulk_pass`
 
 CREATE TABLE `user`
 (
-    `user_id`               varchar(20) NOT NULL COMMENT '사용자 ID',
-    `user_password`         varchar(20) NOT NULL COMMENT '사용자 패스워드',
-    `email`                 varchar(100)         DEFAULT NULL COMMENT '사용자 이메일',
-    `nickname`              varchar(50) NOT NULL COMMENT '사용자 이름',
-    `status`                varchar(10) NOT NULL COMMENT '상태',
-    `role_types`            varchar(50) NOT NULL COMMENT '역할',
-    `phone`                 varchar(50)          DEFAULT NULL COMMENT '연락처',
-    `remaining_days_at_gym` int         NOT NULL DEFAULT 0 COMMENT '헬쓰 이용권 남은 날짜',
-    `meta`                  TEXT                 DEFAULT NULL COMMENT '메타 정보, JSON',
-    `created_at`            timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '생성 일시',
-    `created_by`            varchar(20)          DEFAULT NULL COMMENT '최초 생성자',
-    `modified_at`           timestamp            DEFAULT NULL COMMENT '수정 일시',
-    `modified_by`           varchar(20)          DEFAULT NULL COMMENT '최종 수정자',
+    `user_id`               varchar(20)  NOT NULL COMMENT '사용자 ID',
+    `user_password`         varchar(100) NOT NULL COMMENT '사용자 패스워드',
+    `email`                 varchar(100)          DEFAULT NULL COMMENT '사용자 이메일',
+    `nickname`              varchar(50)  NOT NULL COMMENT '사용자 이름',
+    `status`                varchar(10)  NOT NULL COMMENT '상태',
+    `role_types`            varchar(50)  NOT NULL COMMENT '역할',
+    `phone`                 varchar(50)           DEFAULT NULL COMMENT '연락처',
+    `remaining_days_at_gym` int          NOT NULL DEFAULT 0 COMMENT '헬쓰 이용권 남은 날짜',
+    `meta`                  TEXT                  DEFAULT NULL COMMENT '메타 정보, JSON',
+    `created_at`            timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '생성 일시',
+    `created_by`            varchar(20)           DEFAULT NULL COMMENT '최초 생성자',
+    `modified_at`           timestamp             DEFAULT NULL COMMENT '수정 일시',
+    `modified_by`           varchar(20)           DEFAULT NULL COMMENT '최종 수정자',
     PRIMARY KEY (`user_id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='사용자';
