@@ -66,7 +66,7 @@ CREATE TABLE `user`
     `phone`                 varchar(50)           DEFAULT NULL COMMENT '연락처',
     `remaining_days_at_gym` int          NOT NULL DEFAULT 0 COMMENT '헬쓰 이용권 남은 날짜',
     `meta`                  TEXT                  DEFAULT NULL COMMENT '메타 정보, JSON',
-    `created_at`            timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '생성 일시',
+    `created_at`            timestamp             DEFAULT CURRENT_TIMESTAMP COMMENT '생성 일시',
     `created_by`            varchar(20)           DEFAULT NULL COMMENT '최초 생성자',
     `modified_at`           timestamp             DEFAULT NULL COMMENT '수정 일시',
     `modified_by`           varchar(20)           DEFAULT NULL COMMENT '최종 수정자',
