@@ -10,11 +10,12 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.LinkedHashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 @Entity
 @Table(
         name = "user",
@@ -30,7 +31,7 @@ public class UserEntity extends BaseEntity {
     private String userId;
 
     @Setter
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 100)
     private String userPassword;
 
     @Setter
@@ -39,10 +40,11 @@ public class UserEntity extends BaseEntity {
 
     @Setter
     @Column(length = 50)
-    private String userName;
+    private String nickname;
 
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private UserStatus status;
 
     @Convert(converter = RoleTypesConverter.class)
@@ -55,22 +57,31 @@ public class UserEntity extends BaseEntity {
 
     private String meta;
 
+
     protected UserEntity() {
     }
 
-    private UserEntity(String userId, String userPassword, String email, String userName, UserStatus status, String phone, Long remainingDaysAtGym, String meta) {
+    public UserEntity(String userId, String userPassword, String email, String nickname, UserStatus status, Set<RoleType> roleTypes, String phone, Long remainingDaysAtGym, String meta, String createdBy) {
         this.userId = userId;
         this.userPassword = userPassword;
         this.email = email;
-        this.userName = userName;
+        this.nickname = nickname;
         this.status = status;
+        this.roleTypes = roleTypes;
         this.phone = phone;
         this.remainingDaysAtGym = remainingDaysAtGym;
         this.meta = meta;
+        this.createdBy = createdBy;
+        this.modifiedBy = createdBy;
     }
 
-    public static UserEntity of(String userId, String userPassword, String email, String userName, UserStatus status, String phone, Long remainingDaysAtGym) {
-        return new UserEntity(userId, userPassword, email, userName, status, phone, remainingDaysAtGym, "");
+
+    public static UserEntity of(String userId, String userPassword, String email, String nickname, UserStatus status, Set<RoleType> roleTypes, String phone, Long remainingDaysAtGym) {
+        return UserEntity.of(userId, userPassword, email, nickname, status, roleTypes,phone, remainingDaysAtGym, userId);
+    }
+
+    public static UserEntity of(String userId, String userPassword, String email, String nickname, UserStatus status, Set<RoleType> roleTypes, String phone, Long remainingDaysAtGym, String createdBy) {
+        return new UserEntity(userId, userPassword, email, nickname, status, roleTypes,phone, remainingDaysAtGym, null, createdBy);
     }
 
     public void addRoleType(RoleType roleType) {
@@ -85,4 +96,15 @@ public class UserEntity extends BaseEntity {
         this.getRoleTypes().remove(roleType);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UserEntity that)) return false;
+        return Objects.equals(userId, that.userId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId);
+    }
 }
