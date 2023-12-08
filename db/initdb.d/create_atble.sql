@@ -8,6 +8,7 @@ CREATE TABLE `package`
 (
     `package_seq`  int         NOT NULL AUTO_INCREMENT COMMENT '패키지 순번',
     `package_name` varchar(50) NOT NULL COMMENT '패키지 이름',
+    `period_gym`   int                  DEFAULT NULL COMMENT '헬쓰장 기간',
     `count`        int                  DEFAULT NULL COMMENT '이용권 수, NULL인 경우 무제한',
     `period`       int                  DEFAULT NULL COMMENT '기간(일), NULL인 경우 무제한',
     `created_at`   timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '생성 일시',

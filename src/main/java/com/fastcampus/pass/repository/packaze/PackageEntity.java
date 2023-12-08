@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -19,7 +20,33 @@ public class PackageEntity extends BaseEntity {
     private Integer packageSeq;
 
     private String packageName;
-    private Integer count;
-    private Integer period;
 
+    // gym 이용 기간
+    private Integer periodGym;
+
+    // PT
+    private Integer countPT;
+    private Integer periodPT;
+
+    public  static PackageEntity of(String packageName, Integer periodGym, Integer countPT, Integer periodPT) {
+        return new PackageEntity(packageName, periodGym, countPT, periodPT);
+    }
+    private PackageEntity(String packageName, Integer periodGym, Integer countPT, Integer periodPT) {
+        this.packageName = packageName;
+        this.periodGym = periodGym;
+        this.countPT = countPT;
+        this.periodPT = periodPT;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PackageEntity that)) return false;
+        return Objects.equals(packageSeq, that.packageSeq);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(packageSeq);
+    }
 }
