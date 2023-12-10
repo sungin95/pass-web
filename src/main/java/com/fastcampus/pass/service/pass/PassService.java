@@ -1,5 +1,6 @@
 package com.fastcampus.pass.service.pass;
 
+import com.fastcampus.pass.repository.pass.PassDto;
 import com.fastcampus.pass.repository.pass.PassEntity;
 import com.fastcampus.pass.repository.pass.PassRepository;
 import org.springframework.stereotype.Service;
@@ -14,9 +15,11 @@ public class PassService {
         this.passRepository = passRepository;
     }
 
-    public List<Pass> getPasses(final String userId) {
+    public List<PassDto> getPasses(final String userId) {
         final List<PassEntity> passEntities = passRepository.findByUserId(userId);
-        return PassModelMapper.INSTANCE.map(passEntities);
+        return passEntities.stream()
+                .map(PassDto::from)
+                .toList();
 
     }
 

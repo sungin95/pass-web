@@ -1,9 +1,12 @@
 package com.fastcampus.pass.controller.pass;
 
+import com.fastcampus.pass.repository.pass.PassDto;
 import com.fastcampus.pass.repository.user.UserDto;
-import com.fastcampus.pass.service.pass.Pass;
+import com.fastcampus.pass.repository.user.security.PassPrincipal;
 import com.fastcampus.pass.service.pass.PassService;
 import com.fastcampus.pass.service.user.UserService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,22 +19,20 @@ import java.util.Optional;
 @Controller
 @RequestMapping(value = "/passes")
 public class PassViewController {
-    private final UserService userService;
     private final PassService passService;
 
     public PassViewController(UserService userService, PassService passService) {
-        this.userService = userService;
         this.passService = passService;
     }
 
     @GetMapping
-    public ModelAndView getPasses(@RequestParam("userId") String userId) {
+    public ModelAndView getPasses(@AuthenticationPrincipal PassPrincipal passPrincipal) {
         ModelAndView modelAndView = new ModelAndView();
 
-        final List<Pass> passes = passService.getPasses(userId);
-        final Optional<UserDto> user = userService.searchUser(userId);
+        final List<PassDto> passes = passService.getPasses(passPrincipal.userId());
+
         modelAndView.addObject("passes", passes);
-        modelAndView.addObject("user", user);
+        modelAndView.addObject("user", passPrincipal);
         modelAndView.setViewName("pass/index");
 
         return modelAndView;

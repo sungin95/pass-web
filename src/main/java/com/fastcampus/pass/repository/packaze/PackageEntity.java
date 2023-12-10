@@ -25,19 +25,23 @@ public class PackageEntity extends BaseEntity {
     private Integer periodGym;
 
     // PT
-    private Integer countPT;
-    private Integer periodPT;
+    private Integer count;
+    private Integer period;
 
-    public  static PackageEntity of(String packageName, Integer periodGym, Integer countPT, Integer periodPT) {
-        return new PackageEntity(packageName, periodGym, countPT, periodPT);
+    public PackageEntity() {
+
     }
-    private PackageEntity(String packageName, Integer periodGym, Integer countPT, Integer periodPT) {
+
+    private PackageEntity(String packageName, Integer periodGym, Integer count, Integer period) {
         this.packageName = packageName;
         this.periodGym = periodGym;
-        this.countPT = countPT;
-        this.periodPT = periodPT;
+        this.count = count;
+        this.period = period;
     }
 
+    public static PackageEntity of(String packageName, Integer periodGym, Integer count, Integer period) {
+        return new PackageEntity(packageName, periodGym, count, period);
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

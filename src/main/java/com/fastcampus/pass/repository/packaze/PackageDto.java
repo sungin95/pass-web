@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 public record PackageDto(
         String packageName,
         Integer gymPeriod,
-        Integer timesPT,
-        Integer periodPT,
+        Integer count,
+        Integer period,
         LocalDateTime createdAt,
         String createdBy,
         LocalDateTime modifiedAt,
@@ -15,16 +15,16 @@ public record PackageDto(
         return PackageDto.of(packageName,gymPeriod, null, null);
     }
 
-    public static PackageDto ofPT(String packageName,Integer timesPT, Integer periodPT) {
-        return PackageDto.of(packageName,null, timesPT, periodPT);
+    public static PackageDto ofPT(String packageName,Integer count, Integer period) {
+        return PackageDto.of(packageName,null, count, period);
     }
 
-    public static PackageDto of(String packageName,Integer gymPeriod, Integer timesPT, Integer periodPT) {
-        return PackageDto.of(packageName,gymPeriod, timesPT, periodPT, null, null, null, null);
+    public static PackageDto of(String packageName,Integer gymPeriod, Integer count, Integer period) {
+        return PackageDto.of(packageName,gymPeriod, count, period, null, null, null, null);
     }
 
-    public static PackageDto of(String packageName,Integer gymPeriod, Integer timesPT, Integer periodPT, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
-        return new PackageDto(packageName,gymPeriod, timesPT, periodPT, createdAt, createdBy, modifiedAt, modifiedBy);
+    public static PackageDto of(String packageName,Integer gymPeriod, Integer count, Integer period, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
+        return new PackageDto(packageName,gymPeriod, count, period, createdAt, createdBy, modifiedAt, modifiedBy);
     }
 
 
@@ -32,8 +32,8 @@ public record PackageDto(
         return new PackageDto(
                 entity.getPackageName(),
                 entity.getPeriodGym(),
-                entity.getCountPT(),
-                entity.getPeriodPT(),
+                entity.getCount(),
+                entity.getPeriod(),
                 entity.getCreatedAt(),
                 entity.getCreatedBy(),
                 entity.getModifiedAt(),
@@ -41,7 +41,7 @@ public record PackageDto(
         );
     }
 
-    public PackageEntity toEntity(String packageName, Integer periodGym, Integer countPT, Integer periodPT) {
-        return PackageEntity.of(packageName, periodGym, countPT, periodPT);
+    public PackageEntity toEntity(String packageName, Integer periodGym, Integer count, Integer period) {
+        return PackageEntity.of(packageName, periodGym, count, period);
     }
 }
