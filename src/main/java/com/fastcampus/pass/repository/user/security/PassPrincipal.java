@@ -26,28 +26,28 @@ public record PassPrincipal(
         Map<String, Object> oAuth2Attributes
 ) implements UserDetails, OAuth2User {
     public static PassPrincipal of(String userId,
-                                         String userPassword,
-                                         String email,
-                                         String nickname,
-                                         UserStatus status,
-                                         Set<RoleType> roleTypes,
-                                         String phone,
-                                         Long remainingDaysAtGym,
-                                         String meta
+                                   String userPassword,
+                                   String email,
+                                   String nickname,
+                                   UserStatus status,
+                                   Set<RoleType> roleTypes,
+                                   String phone,
+                                   Long remainingDaysAtGym,
+                                   String meta
     ) {
-        return PassPrincipal.of(userId, userPassword, nickname, email, status, roleTypes, phone, remainingDaysAtGym, meta, Map.of());
+        return PassPrincipal.of(userId, userPassword, email, nickname, status, roleTypes, phone, remainingDaysAtGym, meta, Map.of());
     }
 
     public static PassPrincipal of(String userId,
-                                         String userPassword,
-                                         String email,
-                                         String nickname,
-                                         UserStatus status,
-                                         Set<RoleType> roleTypes,
-                                         String phone,
-                                         Long remainingDaysAtGym,
-                                         String meta,
-                                         Map<String, Object> oAuth2Attributes) {
+                                   String userPassword,
+                                   String email,
+                                   String nickname,
+                                   UserStatus status,
+                                   Set<RoleType> roleTypes,
+                                   String phone,
+                                   Long remainingDaysAtGym,
+                                   String meta,
+                                   Map<String, Object> oAuth2Attributes) {
 
         return new PassPrincipal(
                 userId,
