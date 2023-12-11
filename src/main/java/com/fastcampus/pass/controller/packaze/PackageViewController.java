@@ -28,6 +28,7 @@ public class PackageViewController {
         final List<PackageDto> packages = packageService.getAllPackages();
 
         modelAndView.addObject("packages", packages);
+        modelAndView.addObject("user", passPrincipal);
         modelAndView.setViewName("packaze/index");
 
         return modelAndView;

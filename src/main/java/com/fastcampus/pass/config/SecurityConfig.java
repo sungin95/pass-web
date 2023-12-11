@@ -38,9 +38,7 @@ public class SecurityConfig {
         return http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .mvcMatchers(HttpMethod.GET, "/packaze").permitAll()
-                        .mvcMatchers(HttpMethod.POST, "/**").hasAnyRole(rolesAboveManager)
-                        .mvcMatchers(HttpMethod.DELETE, "/**").hasAnyRole(rolesAboveManager)
+                        .mvcMatchers("/admin/**").hasAnyRole(rolesAboveManager)
                         .anyRequest().authenticated())
                 .formLogin(withDefaults())
                 .logout(logout -> logout.logoutSuccessUrl("/"))
