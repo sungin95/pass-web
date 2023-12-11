@@ -3,7 +3,7 @@ package com.fastcampus.pass.config;
 import com.fastcampus.pass.repository.user.UserStatus;
 import com.fastcampus.pass.repository.user.constant.RoleType;
 import com.fastcampus.pass.service.user.UserService;
-import com.fastcampus.pass.repository.user.security.BoardAdminPrincipal;
+import com.fastcampus.pass.repository.user.security.PassPrincipal;
 import com.fastcampus.pass.repository.user.security.KakaoOAuth2Response;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -38,8 +38,7 @@ public class SecurityConfig {
         return http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .mvcMatchers(HttpMethod.POST, "/**").hasAnyRole(rolesAboveManager)
-                        .mvcMatchers(HttpMethod.DELETE, "/**").hasAnyRole(rolesAboveManager)
+                        .mvcMatchers("/admin/**").hasAnyRole(rolesAboveManager)
                         .anyRequest().authenticated())
                 .formLogin(withDefaults())
                 .logout(logout -> logout.logoutSuccessUrl("/"))
@@ -51,7 +50,7 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService(UserService userService) {
         return userId -> userService
                 .searchUser(userId)
-                .map(BoardAdminPrincipal::from)
+                .map(PassPrincipal::from)
                 .orElseThrow(() -> new UsernameNotFoundException("유저를 찾을 수 없습니다. - username: " + userId));
     }
 
@@ -83,9 +82,9 @@ public class SecurityConfig {
             System.out.println(dummyPassword);
 
             return userService.searchUser(userId)
-                    .map(BoardAdminPrincipal::from)
+                    .map(PassPrincipal::from)
                     .orElseGet(() ->
-                            BoardAdminPrincipal.from(
+                            PassPrincipal.from(
                                     userService.saveUser(
                                             userId,
                                             dummyPassword,

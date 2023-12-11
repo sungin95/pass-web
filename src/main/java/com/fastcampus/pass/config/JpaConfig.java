@@ -1,6 +1,6 @@
 package com.fastcampus.pass.config;
 
-import com.fastcampus.pass.repository.user.security.BoardAdminPrincipal;
+import com.fastcampus.pass.repository.user.security.PassPrincipal;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -21,7 +21,7 @@ public class JpaConfig {
                 .map(SecurityContext::getAuthentication)
                 .filter(Authentication::isAuthenticated)
                 .map(Authentication::getPrincipal)
-                .map(BoardAdminPrincipal.class::cast)
-                .map(BoardAdminPrincipal::getUsername);
+                .map(PassPrincipal.class::cast)
+                .map(PassPrincipal::getUsername);
     }
 }

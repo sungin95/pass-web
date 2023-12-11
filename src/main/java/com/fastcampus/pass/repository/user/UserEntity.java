@@ -6,6 +6,7 @@ import com.fastcampus.pass.repository.user.converter.RoleTypesConverter;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -53,6 +54,8 @@ public class UserEntity extends BaseEntity {
 
     private String phone;
 
+    @Column(nullable = false)
+    @ColumnDefault("0")
     private Long remainingDaysAtGym;
 
     private String meta;

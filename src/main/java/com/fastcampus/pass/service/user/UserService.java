@@ -47,4 +47,10 @@ public class UserService {
         userRepository.deleteById(userId);
     }
 
+    public void addPeriod(String userId, Long addDays) {
+        UserEntity userEntity = userRepository.getReferenceById(userId);
+        Long remainingDays = userEntity.getRemainingDaysAtGym() + addDays;
+        userEntity.setRemainingDaysAtGym(remainingDays);
+    }
+
 }
