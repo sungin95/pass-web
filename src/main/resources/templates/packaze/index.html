@@ -43,6 +43,8 @@
 <!--&lt;!&ndash; Profile&ndash;&gt;-->
 <header class="masthead bg-secondary text-white text-center">
     <div class="container d-flex align-items-center flex-column">
+        <img class="masthead-avatar mb-3" src="/assets/img/profile.png" alt="..." />
+        <p class="masthead-subheading font-weight-light mb-3" th:text="${user.nickname()} + ' 회원님 안녕하세요 ✋'"/>
     </div>
 </header>
 <!--&lt;!&ndash; Passes&ndash;&gt;-->
@@ -50,7 +52,7 @@
     <div class="container px-lg-5">
         <div class="row gx-lg-5 mb-5">
             <div class="col-lg-6 col-xxl-4 mt-4" th:each="package : ${packages}">
-                <a href="http://localhost:8080">  <!--TODO: 주소창을 바꾸어 줘야함. 그리고 파랑 글씨 제거해 주어야 함.-->
+                <form method="post" th:action="'/packaze/purchase/' + ${package.packageSeq()}">
                     <div class="card border-0 h-100" th:classappend="'bg-gray-100'">
                         <div class="card-body p-4 p-lg-5 pt-4 pt-lg-0">
                             <h2 class="fs-4 fw-bold" th:text="${package.packageName()}"></h2>
@@ -63,12 +65,14 @@
                                                                                            th:text="${package.count()} + '회'"></span>
                             </p>
                             <p class="mb-0" th:if="${package.period() == null and package.count() != null}">무제한</p>
-                            <p class="mb-0" th:if="${package.period() != null and package.count() != null}">제한 기간 <span class="fw-bold"
-                                                                                            th:text="${package.period()} + '일'"></span>
+                            <p class="mb-0" th:if="${package.period() != null and package.count() != null}">제한 기간 <span
+                                    class="fw-bold"
+                                    th:text="${package.period()} + '일'"></span>
                             </p>
+                            <button class="btn-success" type="submit">구매</button>
                         </div>
                     </div>
-                </a>
+                </form>
             </div>
         </div>
     </div>
