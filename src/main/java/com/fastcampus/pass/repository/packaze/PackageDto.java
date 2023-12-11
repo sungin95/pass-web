@@ -11,13 +11,7 @@ public record PackageDto(
         String createdBy,
         LocalDateTime modifiedAt,
         String modifiedBy) {
-    public static PackageDto ofGym(String packageName,Integer gymPeriod) {
-        return PackageDto.of(packageName,gymPeriod, null, null);
-    }
 
-    public static PackageDto ofPT(String packageName,Integer count, Integer period) {
-        return PackageDto.of(packageName,null, count, period);
-    }
 
     public static PackageDto of(String packageName,Integer gymPeriod, Integer count, Integer period) {
         return PackageDto.of(packageName,gymPeriod, count, period, null, null, null, null);
