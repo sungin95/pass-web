@@ -3,6 +3,7 @@ package com.fastcampus.pass.repository.packaze;
 import java.time.LocalDateTime;
 
 public record PackageDto(
+        Integer packageSeq,
         String packageName,
         Integer gymPeriod,
         Integer count,
@@ -13,17 +14,18 @@ public record PackageDto(
         String modifiedBy) {
 
 
-    public static PackageDto of(String packageName,Integer gymPeriod, Integer count, Integer period) {
-        return PackageDto.of(packageName,gymPeriod, count, period, null, null, null, null);
+    public static PackageDto of(Integer packageSeq, String packageName, Integer gymPeriod, Integer count, Integer period) {
+        return PackageDto.of(packageSeq, packageName, gymPeriod, count, period, null, null, null, null);
     }
 
-    public static PackageDto of(String packageName,Integer gymPeriod, Integer count, Integer period, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
-        return new PackageDto(packageName,gymPeriod, count, period, createdAt, createdBy, modifiedAt, modifiedBy);
+    public static PackageDto of(Integer packageSeq, String packageName, Integer gymPeriod, Integer count, Integer period, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
+        return new PackageDto(packageSeq, packageName, gymPeriod, count, period, createdAt, createdBy, modifiedAt, modifiedBy);
     }
 
 
     public static PackageDto from(PackageEntity entity) {
         return new PackageDto(
+                entity.getPackageSeq(),
                 entity.getPackageName(),
                 entity.getPeriodGym(),
                 entity.getCount(),
@@ -33,9 +35,5 @@ public record PackageDto(
                 entity.getModifiedAt(),
                 entity.getModifiedBy()
         );
-    }
-
-    public PackageEntity toEntity(String packageName, Integer periodGym, Integer count, Integer period) {
-        return PackageEntity.of(packageName, periodGym, count, period);
     }
 }
