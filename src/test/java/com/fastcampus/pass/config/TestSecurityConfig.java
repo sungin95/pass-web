@@ -23,7 +23,7 @@ public class TestSecurityConfig {
     public void securitySetUp() {
         given(userService.searchUser(anyString()))
                 .willReturn(Optional.of(createUserAccountDto()));
-        given(userService.saveUser(anyString(), anyString(),anyString(),anyString(),any(),anySet(),anyString(),anyLong()))
+        given(userService.saveUser(anyString(), anyString(),anyString(),anyString(),any(),anySet(),anyString()))
                 .willReturn(createUserAccountDto());
     }
 
@@ -36,7 +36,6 @@ public class TestSecurityConfig {
                 UserStatus.INACTIVE,
                 Set.of(RoleType.USER),
                 "01012345678",
-                0L,
                 null
         );
     }
