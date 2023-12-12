@@ -92,8 +92,7 @@ public class SecurityConfig {
                                             kakaoResponse.nickname(),
                                             UserStatus.INACTIVE,
                                             roleTypes,
-                                            "01012345678", //TODO: 카카오 로그인시 정보 수집 필요.
-                                            0L
+                                            "01012345678" //TODO: 카카오 로그인시 정보 수집 필요.
                                     )
                             )
                     );

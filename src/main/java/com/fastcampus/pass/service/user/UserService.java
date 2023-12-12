@@ -26,11 +26,11 @@ public class UserService {
     }
 
     public UserDto saveUser(
-            String userId, String userPassword, String email, String nickname, UserStatus status, Set<RoleType> roleTypes, String phone, Long remainingDaysAtGym
+            String userId, String userPassword, String email, String nickname, UserStatus status, Set<RoleType> roleTypes, String phone
     ) {
         return UserDto.from(
                 userRepository.save(
-                        UserEntity.of(userId, userPassword, email, nickname, status, roleTypes, phone, remainingDaysAtGym)
+                        UserEntity.of(userId, userPassword, email, nickname, status, roleTypes, phone)
                 )
         );
     }
@@ -47,10 +47,5 @@ public class UserService {
         userRepository.deleteById(userId);
     }
 
-    public void addPeriod(String userId, Long addDays) {
-        UserEntity userEntity = userRepository.getReferenceById(userId);
-        Long remainingDays = userEntity.getRemainingDaysAtGym() + addDays;
-        userEntity.setRemainingDaysAtGym(remainingDays);
-    }
 
 }

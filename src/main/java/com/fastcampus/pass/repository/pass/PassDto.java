@@ -1,19 +1,14 @@
 package com.fastcampus.pass.repository.pass;
 
-import com.fastcampus.pass.repository.packaze.PackageEntity;
-
 import java.time.LocalDateTime;
 
 public record PassDto(
         Integer passSeq,
-        Integer packageSeq,
         String userId,
-        PassStatus status,
-        Integer remainingCount,
-        LocalDateTime startedAt,
-        LocalDateTime endedAt,
-        LocalDateTime expiredAt,
-        PackageEntity packageEntity,
+
+        Integer gymPeriod,
+        Integer countPt,
+
         LocalDateTime createdAt,
         String createdBy,
         LocalDateTime modifiedAt,
@@ -22,25 +17,15 @@ public record PassDto(
 
     public static PassDto of(
             Integer passSeq,
-            Integer packageSeq,
             String userId,
-            PassStatus status,
-            Integer remainingCount,
-            LocalDateTime startedAt,
-            LocalDateTime endedAt,
-            LocalDateTime expiredAt,
-            PackageEntity packageEntity
+            Integer gymPeriod,
+            Integer countPt
     ) {
         return PassDto.of(
                 passSeq,
-                packageSeq,
                 userId,
-                status,
-                remainingCount,
-                startedAt,
-                endedAt,
-                expiredAt,
-                packageEntity,
+                gymPeriod,
+                countPt,
                 null,
                 null,
                 null,
@@ -50,14 +35,9 @@ public record PassDto(
 
     public static PassDto of(
             Integer passSeq,
-            Integer packageSeq,
             String userId,
-            PassStatus status,
-            Integer remainingCount,
-            LocalDateTime startedAt,
-            LocalDateTime endedAt,
-            LocalDateTime expiredAt,
-            PackageEntity packageEntity,
+            Integer gymPeriod,
+            Integer countPt,
             LocalDateTime createdAt,
             String createdBy,
             LocalDateTime modifiedAt,
@@ -65,14 +45,9 @@ public record PassDto(
     ) {
         return new PassDto(
                 passSeq,
-                packageSeq,
                 userId,
-                status,
-                remainingCount,
-                startedAt,
-                endedAt,
-                expiredAt,
-                packageEntity,
+                gymPeriod,
+                countPt,
                 createdAt,
                 createdBy,
                 modifiedAt,
@@ -83,14 +58,9 @@ public record PassDto(
     public static PassDto from(PassEntity entity) {
         return new PassDto(
                 entity.getPassSeq(),
-                entity.getPackageSeq(),
                 entity.getUserId(),
-                entity.getStatus(),
-                entity.getRemainingCount(),
-                entity.getStartedAt(),
-                entity.getEndedAt(),
-                entity.getExpiredAt(),
-                entity.getPackageEntity(),
+                entity.getGymPeriod(),
+                entity.getCountPt(),
                 entity.getCreatedAt(),
                 entity.getCreatedBy(),
                 entity.getModifiedAt(),

@@ -8,6 +8,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -18,19 +19,35 @@ public class PassEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본 키 생성을 DB에 위임합니다. (AUTO_INCREMENT)
     private Integer passSeq;
-    private Integer packageSeq;
+
     private String userId;
 
-    @Enumerated(EnumType.STRING)
-    private PassStatus status;
-    private Integer remainingCount;
+    private Integer gymPeriod;
+    private Integer countPt;
 
-    private LocalDateTime startedAt;
-    private LocalDateTime endedAt;
-    private LocalDateTime expiredAt;
+    protected PassEntity() {
+    }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "packageSeq", insertable = false, updatable = false)
-    private PackageEntity packageEntity;
+    private PassEntity(String userId,Integer gymPeriod, Integer countPt) {
+        this.userId = userId;
+        this.gymPeriod = gymPeriod;
+        this.countPt = countPt;
+    }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PassEntity that)) return false;
+        return Objects.equals(passSeq, that.passSeq);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(passSeq);
+    }
+
+//    public static PassEntity of() {
+//        return new PassEntity()
+//    }
 }
