@@ -12,7 +12,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@ToString
+@ToString(callSuper = true)
 @Entity
 @Table(name = "pass")
 public class PassEntity extends BaseEntity {
@@ -28,10 +28,17 @@ public class PassEntity extends BaseEntity {
     protected PassEntity() {
     }
 
-    private PassEntity(String userId,Integer gymPeriod, Integer countPt) {
+    private PassEntity(String userId, Integer gymPeriod, Integer countPt, String createdBy) {
         this.userId = userId;
         this.gymPeriod = gymPeriod;
         this.countPt = countPt;
+        this.createdBy = createdBy;
+        this.modifiedBy = createdBy;
+
+    }
+
+    public static PassEntity of(String userId, Integer gymPeriod, Integer countPt, String createdBy) {
+        return new PassEntity(userId, gymPeriod, countPt, createdBy);
     }
 
 
@@ -46,8 +53,5 @@ public class PassEntity extends BaseEntity {
     public int hashCode() {
         return Objects.hash(passSeq);
     }
-
-//    public static PassEntity of() {
-//        return new PassEntity()
-//    }
+    
 }
