@@ -52,7 +52,7 @@
     <div class="container px-lg-5">
         <div class="row gx-lg-5 mb-5">
             <div class="col-lg-6 col-xxl-4 mt-4" th:each="package : ${packages}">
-                <form method="post" action="/packaze/purchase">
+                <form action="/packaze/purchase" method="post" >
                     <div class="card border-0 h-100" th:classappend="'bg-gray-100'">
                         <div class="card-body p-4 p-lg-5 pt-4 pt-lg-0">
                             <h2 class="fs-4 fw-bold" th:text="${package.packageName()}"></h2>
@@ -60,10 +60,14 @@
                             <p class="mb-0" th:if="${package.gymPeriod() != null}">헬쓰장 이용 기간 <span class="fw-bold"
                                                                                                    th:text="${package.gymPeriod()} + '일'"></span>
                             </p>
+                            <input type="hidden" name="gymPeriod" th:value="${package.gymPeriod()}">
+
                             <h3 th:if="${package.countPt() != null}">PT 이용권</h3>
                             <p class="mb-0" th:if="${package.countPt() != null}">PT 횟수 <span class="fw-bold"
                                                                                            th:text="${package.countPt()} + '회'"></span>
                             </p>
+                            <input type="hidden" name="countPt" th:value="${package.countPt()}">
+
                             <button class="btn-success" type="submit">구매</button>
                         </div>
                     </div>
