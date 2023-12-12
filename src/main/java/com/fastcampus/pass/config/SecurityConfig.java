@@ -43,6 +43,7 @@ public class SecurityConfig {
                 .formLogin(withDefaults())
                 .logout(logout -> logout.logoutSuccessUrl("/"))
                 .oauth2Login(withDefaults())
+                .csrf(csrf -> csrf.ignoringAntMatchers("/**")) // TODO: 동작 확인후 삭제 필요.
                 .build();
     }
 
