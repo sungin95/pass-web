@@ -1,10 +1,9 @@
 package com.fastcampus.pass.service.pass;
 
-import com.fastcampus.pass.repository.packaze.PackageDto;
-import com.fastcampus.pass.repository.packaze.PackagePurchaseRequest;
 import com.fastcampus.pass.repository.pass.PassDto;
 import com.fastcampus.pass.repository.pass.PassEntity;
 import com.fastcampus.pass.repository.pass.PassRepository;
+import com.fastcampus.pass.repository.pass.PassStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public class PassService {
     }
 
     public void createPass(String userId) {
-        passRepository.save(PassEntity.of(userId, 0, 0, userId));
+        passRepository.save(PassEntity.of(userId, 0, 0, PassStatus.DEACTIVATION.toString(), userId));
     }
 
     public void purchasePackaze(String userId, Integer gymPeriod, Integer countPt) {

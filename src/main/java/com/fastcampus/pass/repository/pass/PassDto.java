@@ -8,6 +8,7 @@ public record PassDto(
 
         Integer gymPeriod,
         Integer countPt,
+        String status,
 
         LocalDateTime createdAt,
         String createdBy,
@@ -19,13 +20,15 @@ public record PassDto(
             Integer passSeq,
             String userId,
             Integer gymPeriod,
-            Integer countPt
+            Integer countPt,
+            String status
     ) {
         return PassDto.of(
                 passSeq,
                 userId,
                 gymPeriod,
                 countPt,
+                status,
                 null,
                 null,
                 null,
@@ -38,6 +41,7 @@ public record PassDto(
             String userId,
             Integer gymPeriod,
             Integer countPt,
+            String status,
             LocalDateTime createdAt,
             String createdBy,
             LocalDateTime modifiedAt,
@@ -48,6 +52,7 @@ public record PassDto(
                 userId,
                 gymPeriod,
                 countPt,
+                status,
                 createdAt,
                 createdBy,
                 modifiedAt,
@@ -61,6 +66,7 @@ public record PassDto(
                 entity.getUserId(),
                 entity.getGymPeriod(),
                 entity.getCountPt(),
+                entity.getStatus(),
                 entity.getCreatedAt(),
                 entity.getCreatedBy(),
                 entity.getModifiedAt(),

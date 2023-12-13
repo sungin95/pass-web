@@ -1,13 +1,11 @@
 package com.fastcampus.pass.repository.pass;
 
 import com.fastcampus.pass.repository.BaseEntity;
-import com.fastcampus.pass.repository.packaze.PackageEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Getter
@@ -25,20 +23,25 @@ public class PassEntity extends BaseEntity {
     private Integer gymPeriod;
     private Integer countPt;
 
+
+    @Column(nullable = false)
+    private String status;
+
     protected PassEntity() {
     }
 
-    private PassEntity(String userId, Integer gymPeriod, Integer countPt, String createdBy) {
+    private PassEntity(String userId, Integer gymPeriod, Integer countPt, String status, String createdBy) {
         this.userId = userId;
         this.gymPeriod = gymPeriod;
         this.countPt = countPt;
+        this.status = status;
         this.createdBy = createdBy;
         this.modifiedBy = createdBy;
 
     }
 
-    public static PassEntity of(String userId, Integer gymPeriod, Integer countPt, String createdBy) {
-        return new PassEntity(userId, gymPeriod, countPt, createdBy);
+    public static PassEntity of(String userId, Integer gymPeriod, Integer countPt, String status, String createdBy) {
+        return new PassEntity(userId, gymPeriod, countPt, status, createdBy);
     }
 
 
@@ -53,5 +56,5 @@ public class PassEntity extends BaseEntity {
     public int hashCode() {
         return Objects.hash(passSeq);
     }
-    
+
 }
