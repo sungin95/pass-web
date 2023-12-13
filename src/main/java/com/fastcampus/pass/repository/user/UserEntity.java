@@ -54,17 +54,13 @@ public class UserEntity extends BaseEntity {
 
     private String phone;
 
-    @Column(nullable = false)
-    @ColumnDefault("0")
-    private Long remainingDaysAtGym;
-
     private String meta;
 
 
     protected UserEntity() {
     }
 
-    public UserEntity(String userId, String userPassword, String email, String nickname, UserStatus status, Set<RoleType> roleTypes, String phone, Long remainingDaysAtGym, String meta, String createdBy) {
+    public UserEntity(String userId, String userPassword, String email, String nickname, UserStatus status, Set<RoleType> roleTypes, String phone, String meta, String createdBy) {
         this.userId = userId;
         this.userPassword = userPassword;
         this.email = email;
@@ -72,19 +68,18 @@ public class UserEntity extends BaseEntity {
         this.status = status;
         this.roleTypes = roleTypes;
         this.phone = phone;
-        this.remainingDaysAtGym = remainingDaysAtGym;
         this.meta = meta;
         this.createdBy = createdBy;
         this.modifiedBy = createdBy;
     }
 
 
-    public static UserEntity of(String userId, String userPassword, String email, String nickname, UserStatus status, Set<RoleType> roleTypes, String phone, Long remainingDaysAtGym) {
-        return UserEntity.of(userId, userPassword, email, nickname, status, roleTypes,phone, remainingDaysAtGym, userId);
+    public static UserEntity of(String userId, String userPassword, String email, String nickname, UserStatus status, Set<RoleType> roleTypes, String phone) {
+        return UserEntity.of(userId, userPassword, email, nickname, status, roleTypes, phone, userId);
     }
 
-    public static UserEntity of(String userId, String userPassword, String email, String nickname, UserStatus status, Set<RoleType> roleTypes, String phone, Long remainingDaysAtGym, String createdBy) {
-        return new UserEntity(userId, userPassword, email, nickname, status, roleTypes,phone, remainingDaysAtGym, null, createdBy);
+    public static UserEntity of(String userId, String userPassword, String email, String nickname, UserStatus status, Set<RoleType> roleTypes, String phone, String createdBy) {
+        return new UserEntity(userId, userPassword, email, nickname, status, roleTypes, phone, null, createdBy);
     }
 
     public void addRoleType(RoleType roleType) {

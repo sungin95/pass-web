@@ -43,6 +43,7 @@ public class SecurityConfig {
                 .formLogin(withDefaults())
                 .logout(logout -> logout.logoutSuccessUrl("/"))
                 .oauth2Login(withDefaults())
+                .csrf(csrf -> csrf.ignoringAntMatchers("/**")) // TODO: 동작 확인후 삭제 필요.
                 .build();
     }
 
@@ -92,8 +93,7 @@ public class SecurityConfig {
                                             kakaoResponse.nickname(),
                                             UserStatus.INACTIVE,
                                             roleTypes,
-                                            "01012345678", //TODO: 카카오 로그인시 정보 수집 필요.
-                                            0L
+                                            "01012345678" //TODO: 카카오 로그인시 정보 수집 필요.
                                     )
                             )
                     );

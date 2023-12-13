@@ -5,6 +5,7 @@ import com.fastcampus.pass.repository.user.UserEntity;
 import com.fastcampus.pass.repository.user.UserRepository;
 import com.fastcampus.pass.repository.user.UserStatus;
 import com.fastcampus.pass.repository.user.constant.RoleType;
+import com.fastcampus.pass.service.pass.PassService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,7 @@ import java.util.Set;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final PassService passService;
 
     @Transactional(readOnly = true)
     public Optional<UserDto> searchUser(final String userId) {
@@ -25,14 +27,10 @@ public class UserService {
                 .map(UserDto::from);
     }
 
-    public UserDto saveUser(
-            String userId, String userPassword, String email, String nickname, UserStatus status, Set<RoleType> roleTypes, String phone, Long remainingDaysAtGym
-    ) {
-        return UserDto.from(
-                userRepository.save(
-                        UserEntity.of(userId, userPassword, email, nickname, status, roleTypes, phone, remainingDaysAtGym)
-                )
-        );
+    public UserDto saveUser(String userId, String userPassword, String email, String nickname, UserStatus status, Set<RoleType> roleTypes, String phone) {
+        UserDto userDto = UserDto.from(userRepository.save(UserEntity.of(userId, userPassword, email, nickname, status, roleTypes, phone)));
+        passService.createPass(userDto.userId());
+        return userDto;
     }
 
     @Transactional(readOnly = true)
@@ -47,10 +45,5 @@ public class UserService {
         userRepository.deleteById(userId);
     }
 
-    public void addPeriod(String userId, Long addDays) {
-        UserEntity userEntity = userRepository.getReferenceById(userId);
-        Long remainingDays = userEntity.getRemainingDaysAtGym() + addDays;
-        userEntity.setRemainingDaysAtGym(remainingDays);
-    }
 
 }

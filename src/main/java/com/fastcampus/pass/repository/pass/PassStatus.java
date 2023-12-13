@@ -1,5 +1,10 @@
 package com.fastcampus.pass.repository.pass;
 
 public enum PassStatus {
-    READY, PROGRESSED, EXPIRED
+    ACTIVATION, DEACTIVATION, STOP;
+
+    public String toString() {
+        return name();
+    }
+
 }

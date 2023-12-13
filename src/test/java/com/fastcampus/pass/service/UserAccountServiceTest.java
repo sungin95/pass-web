@@ -77,8 +77,7 @@ class UserAccountServiceTest {
                 userAccount.getNickname(),
                 userAccount.getStatus(),
                 userAccount.getRoleTypes(),
-                userAccount.getPhone(),
-                userAccount.getRemainingDaysAtGym()
+                userAccount.getPhone()
         );
 
         // Then
@@ -97,8 +96,7 @@ class UserAccountServiceTest {
                 "nickname",
                 UserStatus.INACTIVE,
                 Set.of(RoleType.USER),
-                "01012345678",
-                0L
+                "01012345678"
         );
     }
 

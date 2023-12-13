@@ -21,7 +21,6 @@ public record PassPrincipal(
         UserStatus status,
         Collection<? extends GrantedAuthority> authorities,
         String phone,
-        Long remainingDaysAtGym,
         String meta,
         Map<String, Object> oAuth2Attributes
 ) implements UserDetails, OAuth2User {
@@ -32,10 +31,9 @@ public record PassPrincipal(
                                    UserStatus status,
                                    Set<RoleType> roleTypes,
                                    String phone,
-                                   Long remainingDaysAtGym,
                                    String meta
     ) {
-        return PassPrincipal.of(userId, userPassword, email, nickname, status, roleTypes, phone, remainingDaysAtGym, meta, Map.of());
+        return PassPrincipal.of(userId, userPassword, email, nickname, status, roleTypes, phone, meta, Map.of());
     }
 
     public static PassPrincipal of(String userId,
@@ -45,7 +43,6 @@ public record PassPrincipal(
                                    UserStatus status,
                                    Set<RoleType> roleTypes,
                                    String phone,
-                                   Long remainingDaysAtGym,
                                    String meta,
                                    Map<String, Object> oAuth2Attributes) {
 
@@ -60,7 +57,6 @@ public record PassPrincipal(
                         .map(SimpleGrantedAuthority::new)
                         .collect(Collectors.toUnmodifiableSet()),
                 phone,
-                remainingDaysAtGym,
                 meta,
                 oAuth2Attributes
         );
@@ -75,7 +71,6 @@ public record PassPrincipal(
                 dto.status(),
                 dto.roleTypes(),
                 dto.phone(),
-                dto.remainingDaysAtGym(),
                 dto.meta()
         );
     }
@@ -92,7 +87,6 @@ public record PassPrincipal(
                         .map(RoleType::valueOf)
                         .collect(Collectors.toUnmodifiableSet()),
                 phone,
-                remainingDaysAtGym,
                 meta
         );
     }
