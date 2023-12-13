@@ -59,6 +59,11 @@
                         <p class="mb-0">남은 헬쓰 기간 <span class="fw-bold" th:text="${pass.gymPeriod()} + '일'"></span></p>
                         <p class="mb-0">남은 PT 횟수 <span class="fw-bold" th:text="${pass.countPt()} + '회'"></span>
                         </p>
+                        <p class="mb-0">남은 PT 횟수
+                            <span th:if="${pass.status()=='ACTIVATION'}" class="fw-bold">활성화</span>
+                            <span th:if="${pass.status()=='DEACTIVATION'}" class="fw-bold">사용 가능한 기간이 없습니다.</span>
+                            <span th:if="${pass.status()=='STOP'}" class="fw-bold">일시중지</span>
+                        </p>
                         <!--                        <p class="mb-0 fs-7 text-end" th:if="${pass.getStatus().name() == 'PROGRESSED'}">진행 중</p>-->
                     </div>
                 </div>

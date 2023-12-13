@@ -35,6 +35,7 @@ public class PassService {
 
         if (gymPeriod != null) {
             pass.setGymPeriod(pass.getGymPeriod() + gymPeriod);
+            pass.setStatus(PassStatus.ACTIVATION.toString());
         }
         if (countPt != null) {
             pass.setCountPt(pass.getCountPt() + countPt);
