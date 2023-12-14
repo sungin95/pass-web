@@ -51,7 +51,7 @@
 <section>
     <div class="container px-lg-5">
         <div class="row gx-lg-5 mb-5">
-            <div class="col-lg-6 col-xxl-4 mt-4" th:each="pass : ${passes}">
+            <div class="col-lg-6 col-xxl-4 mt-4">
                 <div class="card border-0 h-100" th:classappend="${'bg-gray-100'}">
                     <div class="card-body p-4 p-lg-5 pt-4 pt-lg-0">
                         <h2 class="fs-4 fw-bold">내 이용권</h2>
@@ -59,13 +59,18 @@
                         <p class="mb-0">남은 헬쓰 기간 <span class="fw-bold" th:text="${pass.gymPeriod()} + '일'"></span></p>
                         <p class="mb-0">남은 PT 횟수 <span class="fw-bold" th:text="${pass.countPt()} + '회'"></span>
                         </p>
-                        <p class="mb-0">남은 PT 횟수
+                        <p class="mb-0">상태:
                             <span th:if="${pass.status()=='ACTIVATION'}" class="fw-bold">활성화</span>
                             <span th:if="${pass.status()=='DEACTIVATION'}" class="fw-bold">사용 가능한 기간이 없습니다.</span>
                             <span th:if="${pass.status()=='STOP'}" class="fw-bold">일시중지</span>
                         </p>
-                        <!--                        <p class="mb-0 fs-7 text-end" th:if="${pass.getStatus().name() == 'PROGRESSED'}">진행 중</p>-->
+                        <br>
+                        <form action="/pass/send" method="post">
+                            <input type="text" name="userId" >
+                            <button class="btn-success" type="submit">남은 기한 보내기</button>
+                        </form>
                     </div>
+
                 </div>
             </div>
         </div>
