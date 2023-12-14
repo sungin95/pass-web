@@ -4,10 +4,15 @@ import com.fastcampus.pass.repository.pass.PassDto;
 import com.fastcampus.pass.repository.pass.PassEntity;
 import com.fastcampus.pass.repository.pass.PassRepository;
 import com.fastcampus.pass.repository.pass.PassStatus;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+@Slf4j
+@Transactional
 @Service
 public class PassService {
     private final PassRepository passRepository;
@@ -16,11 +21,15 @@ public class PassService {
         this.passRepository = passRepository;
     }
 
-    public List<PassDto> getPasses(final String userId) {
-        final List<PassEntity> passEntities = passRepository.findByUserId(userId);
-        return passEntities.stream()
-                .map(PassDto::from)
-                .toList();
+    public PassEntity getPass(final String userId) {
+
+        final PassEntity passEntitiy = passRepository.findByUserId(userId).get(0);
+        if (passEntitiy != null) {
+            return passEntitiy;
+        } else {
+            throw new EntityNotFoundException("패스 엔터티가 null입니다. userId를 다시 확인해 주세요.");
+        }
+        
     }
 
     public void createPass(String userId) {
@@ -29,9 +38,7 @@ public class PassService {
 
     public void purchasePackaze(String userId, Integer gymPeriod, Integer countPt) {
 
-        List<PassEntity> passEntities = passRepository.findByUserId(userId);
-
-        PassEntity pass = passEntities.get(0);
+        PassEntity pass = getPass(userId);
 
         if (gymPeriod != null) {
             pass.setGymPeriod(pass.getGymPeriod() + gymPeriod);
@@ -42,6 +49,21 @@ public class PassService {
         }
 
         passRepository.save(pass);
+    }
+
+    public void sendPass(String loginUserId, String userId) {
+        PassEntity loginUserPass = getPass(loginUserId);
+        PassEntity userPass = getPass(userId);
+
+        userPass.setGymPeriod(userPass.getGymPeriod() + loginUserPass.getGymPeriod());
+        userPass.setCountPt(userPass.getCountPt() + loginUserPass.getCountPt());
+
+        loginUserPass.setGymPeriod(0);
+        loginUserPass.setCountPt(0);
+
+        userPass.setStatus(PassStatus.ACTIVATION.toString());
+        loginUserPass.setStatus(PassStatus.DEACTIVATION.toString());
+
     }
 
 

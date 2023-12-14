@@ -46,6 +46,6 @@ public class PackageViewController {
     ) {
         passService.purchasePackaze(passPrincipal.userId(), packagePurchaseRequest.gymPeriod(), packagePurchaseRequest.countPt());
 
-        return "redirect:/passes";
+        return "redirect:/pass";
     }
 }
