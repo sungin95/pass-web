@@ -1,6 +1,5 @@
 package com.fastcampus.pass.service.pass;
 
-import com.fastcampus.pass.repository.pass.PassDto;
 import com.fastcampus.pass.repository.pass.PassEntity;
 import com.fastcampus.pass.repository.pass.PassRepository;
 import com.fastcampus.pass.repository.pass.PassStatus;
@@ -24,6 +23,7 @@ public class PassService {
     public PassEntity getPass(final String userId) {
 
         final PassEntity passEntitiy = passRepository.findByUserId(userId).get(0);
+
         if (passEntitiy != null) {
             return passEntitiy;
         } else {
