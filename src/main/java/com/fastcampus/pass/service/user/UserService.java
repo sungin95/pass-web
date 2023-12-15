@@ -19,7 +19,6 @@ import java.util.Set;
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    private final PassService passService;
 
     @Transactional(readOnly = true)
     public Optional<UserDto> searchUser(final String userId) {
@@ -27,10 +26,9 @@ public class UserService {
                 .map(UserDto::from);
     }
 
+    // test외에는 사용 금지. User생성시 반드시 saveUserAndPass를 사용 할 것.
     public UserDto saveUser(String userId, String userPassword, String email, String nickname, UserStatus status, Set<RoleType> roleTypes, String phone) {
-        UserDto userDto = UserDto.from(userRepository.save(UserEntity.of(userId, userPassword, email, nickname, status, roleTypes, phone)));
-        passService.createPass(userDto.userId());
-        return userDto;
+        return UserDto.from(userRepository.save(UserEntity.of(userId, userPassword, email, nickname, status, roleTypes, phone)));
     }
 
     @Transactional(readOnly = true)
@@ -44,6 +42,5 @@ public class UserService {
     public void deleteUser(String userId) {
         userRepository.deleteById(userId);
     }
-
 
 }

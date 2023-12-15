@@ -3,6 +3,7 @@ package com.fastcampus.pass.config;
 import com.fastcampus.pass.repository.user.UserDto;
 import com.fastcampus.pass.repository.user.UserStatus;
 import com.fastcampus.pass.repository.user.constant.RoleType;
+import com.fastcampus.pass.service.IntegratedService;
 import com.fastcampus.pass.service.user.UserService;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
@@ -16,14 +17,18 @@ import static org.mockito.BDDMockito.given;
 
 @Import(SecurityConfig.class)
 public class TestSecurityConfig {
+
     @MockBean
     private UserService userService;
+
+    @MockBean
+    private IntegratedService integratedService;
 
     @BeforeTestMethod
     public void securitySetUp() {
         given(userService.searchUser(anyString()))
                 .willReturn(Optional.of(createUserAccountDto()));
-        given(userService.saveUser(anyString(), anyString(),anyString(),anyString(),any(),anySet(),anyString()))
+        given(integratedService.saveUserAndPass(anyString(), anyString(),anyString(),anyString(),any(),anySet(),anyString()))
                 .willReturn(createUserAccountDto());
     }
 
