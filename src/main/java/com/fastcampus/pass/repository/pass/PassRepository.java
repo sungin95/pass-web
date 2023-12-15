@@ -10,4 +10,9 @@ public interface PassRepository extends JpaRepository<PassEntity, Integer> {
             "where p.userId = :userId "
     )
     List<PassEntity> findByUserId(String userId);
+
+    @Query(value = "select p from PassEntity p " +
+            "where p.status = :status "
+    )
+    List<PassEntity> findByStatus(String status);
 }
