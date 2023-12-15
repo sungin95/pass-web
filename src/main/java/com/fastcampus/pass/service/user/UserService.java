@@ -1,11 +1,10 @@
 package com.fastcampus.pass.service.user;
 
-import com.fastcampus.pass.repository.user.UserDto;
+import com.fastcampus.pass.dto.UserDto;
 import com.fastcampus.pass.repository.user.UserEntity;
 import com.fastcampus.pass.repository.user.UserRepository;
 import com.fastcampus.pass.repository.user.UserStatus;
 import com.fastcampus.pass.repository.user.constant.RoleType;
-import com.fastcampus.pass.service.pass.PassService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

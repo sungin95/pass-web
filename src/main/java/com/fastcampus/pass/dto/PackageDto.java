@@ -1,4 +1,6 @@
-package com.fastcampus.pass.repository.packaze;
+package com.fastcampus.pass.dto;
+
+import com.fastcampus.pass.repository.packaze.PackageEntity;
 
 import java.time.LocalDateTime;
 

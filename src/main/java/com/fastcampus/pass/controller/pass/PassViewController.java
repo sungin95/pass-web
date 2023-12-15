@@ -1,9 +1,8 @@
 package com.fastcampus.pass.controller.pass;
 
-import com.fastcampus.pass.repository.packaze.PackagePurchaseRequest;
-import com.fastcampus.pass.repository.pass.PassDto;
+import com.fastcampus.pass.dto.PassDto;
 import com.fastcampus.pass.repository.pass.PassEntity;
-import com.fastcampus.pass.repository.user.security.PassPrincipal;
+import com.fastcampus.pass.dto.security.PassPrincipal;
 import com.fastcampus.pass.service.pass.PassService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;

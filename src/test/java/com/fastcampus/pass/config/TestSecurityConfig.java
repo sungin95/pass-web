@@ -1,6 +1,6 @@
 package com.fastcampus.pass.config;
 
-import com.fastcampus.pass.repository.user.UserDto;
+import com.fastcampus.pass.dto.UserDto;
 import com.fastcampus.pass.repository.user.UserStatus;
 import com.fastcampus.pass.repository.user.constant.RoleType;
 import com.fastcampus.pass.service.IntegratedService;

@@ -1,4 +1,4 @@
-package com.fastcampus.pass.repository.packaze;
+package com.fastcampus.pass.dto.request;
 
 
 public record PackagePurchaseRequest(

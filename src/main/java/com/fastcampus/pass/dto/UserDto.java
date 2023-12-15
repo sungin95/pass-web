@@ -1,9 +1,10 @@
-package com.fastcampus.pass.repository.user;
+package com.fastcampus.pass.dto;
 
+import com.fastcampus.pass.repository.user.UserEntity;
+import com.fastcampus.pass.repository.user.UserStatus;
 import com.fastcampus.pass.repository.user.constant.RoleType;
 
 import java.time.LocalDateTime;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 public record UserDto(

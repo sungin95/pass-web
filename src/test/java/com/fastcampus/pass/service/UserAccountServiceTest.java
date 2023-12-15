@@ -1,7 +1,7 @@
 package com.fastcampus.pass.service;
 
 
-import com.fastcampus.pass.repository.user.UserDto;
+import com.fastcampus.pass.dto.UserDto;
 import com.fastcampus.pass.repository.user.UserEntity;
 import com.fastcampus.pass.repository.user.UserRepository;
 import com.fastcampus.pass.repository.user.UserStatus;
