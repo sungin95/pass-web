@@ -1,6 +1,7 @@
 package com.fastcampus.pass.controller.pass;
 
 import com.fastcampus.pass.dto.PassDto;
+import com.fastcampus.pass.dto.request.PassSendRequest;
 import com.fastcampus.pass.repository.pass.PassEntity;
 import com.fastcampus.pass.dto.security.PassPrincipal;
 import com.fastcampus.pass.service.pass.PassService;
@@ -39,9 +40,9 @@ public class PassViewController {
     @PostMapping("/send")
     public String postPackagePurchase(
             @AuthenticationPrincipal PassPrincipal passPrincipal,
-            String userId
+            PassSendRequest passSendRequest
     ) {
-        passService.sendPass(passPrincipal.userId(), userId);
+        passService.sendPass(passPrincipal.userId(), passSendRequest.sellectedUserId());
 
         return "redirect:/pass";
     }
