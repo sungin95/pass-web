@@ -1,4 +1,4 @@
-package com.fastcampus.pass.repository.user.security;
+package com.fastcampus.pass.dto.security;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;

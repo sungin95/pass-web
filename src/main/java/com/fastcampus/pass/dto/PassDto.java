@@ -1,4 +1,6 @@
-package com.fastcampus.pass.repository.pass;
+package com.fastcampus.pass.dto;
+
+import com.fastcampus.pass.repository.pass.PassEntity;
 
 import java.time.LocalDateTime;
 

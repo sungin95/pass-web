@@ -1,10 +1,10 @@
-package com.fastcampus.pass.controller.packaze;
+package com.fastcampus.pass.controller;
 
-import com.fastcampus.pass.repository.packaze.PackageDto;
-import com.fastcampus.pass.repository.packaze.PackagePurchaseRequest;
-import com.fastcampus.pass.repository.user.security.PassPrincipal;
-import com.fastcampus.pass.service.packaze.PackageService;
-import com.fastcampus.pass.service.pass.PassService;
+import com.fastcampus.pass.dto.PackageDto;
+import com.fastcampus.pass.dto.request.PackagePurchaseRequest;
+import com.fastcampus.pass.dto.security.PassPrincipal;
+import com.fastcampus.pass.service.PackageService;
+import com.fastcampus.pass.service.PassService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

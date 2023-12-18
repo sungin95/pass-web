@@ -1,5 +1,6 @@
-package com.fastcampus.pass.repository.user.security;
+package com.fastcampus.pass.dto.security;
 
+import com.fastcampus.pass.dto.security.KakaoOAuth2Response;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;

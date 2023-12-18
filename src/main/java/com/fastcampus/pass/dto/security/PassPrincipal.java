@@ -1,8 +1,8 @@
-package com.fastcampus.pass.repository.user.security;
+package com.fastcampus.pass.dto.security;
 
 import com.fastcampus.pass.repository.user.UserStatus;
 import com.fastcampus.pass.repository.user.constant.RoleType;
-import com.fastcampus.pass.repository.user.UserDto;
+import com.fastcampus.pass.dto.UserDto;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

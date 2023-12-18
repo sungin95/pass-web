@@ -1,12 +1,11 @@
 package com.fastcampus.pass.service;
 
 
-import com.fastcampus.pass.repository.user.UserDto;
+import com.fastcampus.pass.dto.UserDto;
 import com.fastcampus.pass.repository.user.UserEntity;
 import com.fastcampus.pass.repository.user.UserRepository;
 import com.fastcampus.pass.repository.user.UserStatus;
 import com.fastcampus.pass.repository.user.constant.RoleType;
-import com.fastcampus.pass.service.user.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,7 +22,7 @@ import static org.mockito.BDDMockito.then;
 
 @DisplayName("비즈니스 로직 - 회원")
 @ExtendWith(MockitoExtension.class)
-class UserAccountServiceTest {
+class UserServiceTest {
 
     @InjectMocks
     private UserService sut;
@@ -86,7 +85,10 @@ class UserAccountServiceTest {
         then(userAccountRepository).should().save(userAccount);
     }
 
-
+//    @DisplayName("모든 회원 정보 보여주기.")
+//    @Test
+//    void given_whenUsers_thenAllUsers() {
+//    }
 
     private UserEntity createUserAccount(String userId) {
         return UserEntity.of(

@@ -1,10 +1,10 @@
-package com.fastcampus.pass.controller.pass;
+package com.fastcampus.pass.controller;
 
-import com.fastcampus.pass.repository.packaze.PackagePurchaseRequest;
-import com.fastcampus.pass.repository.pass.PassDto;
+import com.fastcampus.pass.dto.PassDto;
+import com.fastcampus.pass.dto.request.PassSendRequest;
 import com.fastcampus.pass.repository.pass.PassEntity;
-import com.fastcampus.pass.repository.user.security.PassPrincipal;
-import com.fastcampus.pass.service.pass.PassService;
+import com.fastcampus.pass.dto.security.PassPrincipal;
+import com.fastcampus.pass.service.PassService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,9 +40,9 @@ public class PassViewController {
     @PostMapping("/send")
     public String postPackagePurchase(
             @AuthenticationPrincipal PassPrincipal passPrincipal,
-            String userId
+            PassSendRequest passSendRequest
     ) {
-        passService.sendPass(passPrincipal.userId(), userId);
+        passService.sendPass(passPrincipal.userId(), passSendRequest.sellectedUserId());
 
         return "redirect:/pass";
     }

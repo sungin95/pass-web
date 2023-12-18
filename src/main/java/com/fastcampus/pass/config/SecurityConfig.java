@@ -2,13 +2,13 @@ package com.fastcampus.pass.config;
 
 import com.fastcampus.pass.repository.user.UserStatus;
 import com.fastcampus.pass.repository.user.constant.RoleType;
-import com.fastcampus.pass.service.user.UserService;
-import com.fastcampus.pass.repository.user.security.PassPrincipal;
-import com.fastcampus.pass.repository.user.security.KakaoOAuth2Response;
+import com.fastcampus.pass.service.IntegratedService;
+import com.fastcampus.pass.service.UserService;
+import com.fastcampus.pass.dto.security.PassPrincipal;
+import com.fastcampus.pass.dto.security.KakaoOAuth2Response;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -60,14 +60,16 @@ public class SecurityConfig {
      * OAuth 2.0 기술을 이용한 인증 정보를 처리한다.
      * 카카오 인증 방식을 선택.
      *
-     * @param userService     게시판 서비스의 사용자 계정을 다루는 서비스 로직
+     * @param userService     사용자 계정을 다루는 서비스 로직
      * @param passwordEncoder 패스워드 암호화 도구
+     * @param integratedService 여러 서비스 로직을 통합하여 사용 서비스
      * @return {@link OAuth2UserService} OAuth2 인증 사용자 정보를 읽어들이고 처리하는 서비스 인스턴스 반환
      */
     @Bean
     public OAuth2UserService<OAuth2UserRequest, OAuth2User> oAuth2UserService(
             UserService userService,
-            PasswordEncoder passwordEncoder
+            PasswordEncoder passwordEncoder,
+            IntegratedService integratedService
     ) {
         final DefaultOAuth2UserService delegate = new DefaultOAuth2UserService();
 
@@ -86,7 +88,7 @@ public class SecurityConfig {
                     .map(PassPrincipal::from)
                     .orElseGet(() ->
                             PassPrincipal.from(
-                                    userService.saveUser(
+                                    integratedService.saveUserAndPass(
                                             userId,
                                             dummyPassword,
                                             kakaoResponse.email(),
