@@ -1,6 +1,6 @@
 //package com.fastcampus.pass.controller.admin;
 //
-//import com.fastcampus.pass.service.packaze.PackageService;
+//import com.fastcampus.pass.service.PackageService;
 //import com.fastcampus.pass.service.pass.BulkPassService;
 //import com.fastcampus.pass.service.statistics.StatisticsService;
 //import com.fastcampus.pass.service.user.UserGroupMappingService;

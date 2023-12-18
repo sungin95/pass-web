@@ -1,4 +1,4 @@
-package com.fastcampus.pass.service.pass;
+package com.fastcampus.pass.service;
 
 import com.fastcampus.pass.repository.pass.PassEntity;
 import com.fastcampus.pass.repository.pass.PassRepository;

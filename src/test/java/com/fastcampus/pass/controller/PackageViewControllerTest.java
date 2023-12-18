@@ -1,9 +1,9 @@
-package com.fastcampus.pass.controller.packaze;
+package com.fastcampus.pass.controller;
 
 import com.fastcampus.pass.config.TestSecurityConfig;
 import com.fastcampus.pass.dto.request.PackagePurchaseRequest;
-import com.fastcampus.pass.service.packaze.PackageService;
-import com.fastcampus.pass.service.pass.PassService;
+import com.fastcampus.pass.service.PackageService;
+import com.fastcampus.pass.service.PassService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

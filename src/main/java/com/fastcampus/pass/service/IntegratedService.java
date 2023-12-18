@@ -3,8 +3,6 @@ package com.fastcampus.pass.service;
 import com.fastcampus.pass.dto.UserDto;
 import com.fastcampus.pass.repository.user.UserStatus;
 import com.fastcampus.pass.repository.user.constant.RoleType;
-import com.fastcampus.pass.service.pass.PassService;
-import com.fastcampus.pass.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

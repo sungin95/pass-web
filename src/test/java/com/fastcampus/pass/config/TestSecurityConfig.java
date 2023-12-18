@@ -4,7 +4,7 @@ import com.fastcampus.pass.dto.UserDto;
 import com.fastcampus.pass.repository.user.UserStatus;
 import com.fastcampus.pass.repository.user.constant.RoleType;
 import com.fastcampus.pass.service.IntegratedService;
-import com.fastcampus.pass.service.user.UserService;
+import com.fastcampus.pass.service.UserService;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.event.annotation.BeforeTestMethod;

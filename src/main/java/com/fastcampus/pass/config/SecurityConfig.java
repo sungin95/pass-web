@@ -3,7 +3,7 @@ package com.fastcampus.pass.config;
 import com.fastcampus.pass.repository.user.UserStatus;
 import com.fastcampus.pass.repository.user.constant.RoleType;
 import com.fastcampus.pass.service.IntegratedService;
-import com.fastcampus.pass.service.user.UserService;
+import com.fastcampus.pass.service.UserService;
 import com.fastcampus.pass.dto.security.PassPrincipal;
 import com.fastcampus.pass.dto.security.KakaoOAuth2Response;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;

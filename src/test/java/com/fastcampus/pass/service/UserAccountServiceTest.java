@@ -6,7 +6,6 @@ import com.fastcampus.pass.repository.user.UserEntity;
 import com.fastcampus.pass.repository.user.UserRepository;
 import com.fastcampus.pass.repository.user.UserStatus;
 import com.fastcampus.pass.repository.user.constant.RoleType;
-import com.fastcampus.pass.service.user.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

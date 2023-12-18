@@ -1,8 +1,8 @@
-package com.fastcampus.pass.controller.pass;
+package com.fastcampus.pass.controller;
 
 import com.fastcampus.pass.config.TestSecurityConfig;
 import com.fastcampus.pass.dto.request.PassSendRequest;
-import com.fastcampus.pass.service.pass.PassService;
+import com.fastcampus.pass.service.PassService;
 import com.fastcampus.pass.util.FormDataEncoder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

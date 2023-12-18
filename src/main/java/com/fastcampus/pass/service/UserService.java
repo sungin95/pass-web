@@ -1,4 +1,4 @@
-package com.fastcampus.pass.service.user;
+package com.fastcampus.pass.service;
 
 import com.fastcampus.pass.dto.UserDto;
 import com.fastcampus.pass.repository.user.UserEntity;
