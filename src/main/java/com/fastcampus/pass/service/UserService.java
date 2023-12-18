@@ -30,13 +30,13 @@ public class UserService {
         return UserDto.from(userRepository.save(UserEntity.of(userId, userPassword, email, nickname, status, roleTypes, phone)));
     }
 
-    @Transactional(readOnly = true)
-    public List<UserDto> users() {
-
-        return userRepository.findAll().stream()
-                .map(UserDto::from)
-                .toList();
-    }
+//    @Transactional(readOnly = true)
+//    public List<UserDto> users() {
+//
+//        return userRepository.findAll().stream()
+//                .map(UserDto::from)
+//                .toList();
+//    }
 
     public void deleteUser(String userId) {
         userRepository.deleteById(userId);

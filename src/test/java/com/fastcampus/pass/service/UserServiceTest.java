@@ -22,7 +22,7 @@ import static org.mockito.BDDMockito.then;
 
 @DisplayName("비즈니스 로직 - 회원")
 @ExtendWith(MockitoExtension.class)
-class UserAccountServiceTest {
+class UserServiceTest {
 
     @InjectMocks
     private UserService sut;
@@ -85,7 +85,10 @@ class UserAccountServiceTest {
         then(userAccountRepository).should().save(userAccount);
     }
 
-
+//    @DisplayName("모든 회원 정보 보여주기.")
+//    @Test
+//    void given_whenUsers_thenAllUsers() {
+//    }
 
     private UserEntity createUserAccount(String userId) {
         return UserEntity.of(
