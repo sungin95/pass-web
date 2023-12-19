@@ -52,7 +52,7 @@
     <div class="container px-lg-5">
         <div class="row gx-lg-5 mb-5">
             <div class="col-lg-6 col-xxl-4 mt-4" th:each="package : ${packages}">
-                <form action="/packaze/purchase" method="post" >
+                <form action="/package/purchase" method="post" >
                     <div class="card border-0 h-100" th:classappend="'bg-gray-100'">
                         <div class="card-body p-4 p-lg-5 pt-4 pt-lg-0">
                             <h2 class="fs-4 fw-bold" th:text="${package.packageName()}"></h2>

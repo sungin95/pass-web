@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/packaze")
+@RequestMapping(value = "/package")
 public class PackageViewController {
 
     private final PackageService packageService;

@@ -52,7 +52,7 @@ class PackageViewControllerTest {
         willDoNothing().given(passService).purchasePackaze(anyString(), anyInt(), anyInt());
         // When & Then
         mvc.perform(
-                post("/packaze/purchase")
+                post("/package/purchase")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .content(formDataEncoder.encode(request))
                         .with(csrf())
