@@ -1,10 +1,12 @@
-package com.fastcampus.pass.service.packaze;
+package com.fastcampus.pass.service;
 
+import com.fastcampus.pass.dto.PackageDto;
 import com.fastcampus.pass.repository.packaze.PackageEntity;
 import com.fastcampus.pass.repository.packaze.PackageRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PackageService {
@@ -14,8 +16,12 @@ public class PackageService {
         this.packageRepository = packageRepository;
     }
 
-    public List<Package> getAllPackages() {
-        List<PackageEntity> bulkPassEntities = packageRepository.findAllByOrderByPackageName();
-        return PackageModelMapper.INSTANCE.map(bulkPassEntities);
+    public List<PackageDto> getAllPackages() {
+        List<PackageEntity> packageEntities = packageRepository.findAllByOrderByPackageName();
+
+        return packageEntities.stream()
+                .map(PackageDto::from)
+                .collect(Collectors.toList());
+
     }
 }

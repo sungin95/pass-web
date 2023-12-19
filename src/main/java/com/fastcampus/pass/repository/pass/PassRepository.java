@@ -7,8 +7,12 @@ import java.util.List;
 
 public interface PassRepository extends JpaRepository<PassEntity, Integer> {
     @Query(value = "select p from PassEntity p " +
-            "join fetch p.packageEntity " +
-            "where p.userId = :userId " +
-            "order by p.endedAt desc nulls first ")
+            "where p.userId = :userId "
+    )
     List<PassEntity> findByUserId(String userId);
+
+    @Query(value = "select p from PassEntity p " +
+            "where p.status = :status "
+    )
+    List<PassEntity> findByStatus(String status);
 }
