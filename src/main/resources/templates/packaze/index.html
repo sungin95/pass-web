@@ -30,12 +30,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#passes">이용권</a>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/pass">내 이용권</a>
                 </li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#class">수업</a>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/package">패키지 보기</a>
                 </li>
-                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#notice">공지사항</a>
+                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/logout">로그아웃</a>
                 </li>
+                <!--                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#class">수업</a>-->
+                <!--                </li>-->
+                <!--                <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#notice">공지사항</a>-->
+                <!--                </li>-->
             </ul>
         </div>
     </div>
@@ -52,7 +56,7 @@
     <div class="container px-lg-5">
         <div class="row gx-lg-5 mb-5">
             <div class="col-lg-6 col-xxl-4 mt-4" th:each="package : ${packages}">
-                <form action="/packaze/purchase" method="post" >
+                <form action="/package/purchase" method="post" >
                     <div class="card border-0 h-100" th:classappend="'bg-gray-100'">
                         <div class="card-body p-4 p-lg-5 pt-4 pt-lg-0">
                             <h2 class="fs-4 fw-bold" th:text="${package.packageName()}"></h2>
