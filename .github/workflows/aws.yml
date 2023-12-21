@@ -1,6 +1,6 @@
 name: Deploy to AWS EC2 using Docker
 
-on: 
+on:
   push:
     branches:
       - master
