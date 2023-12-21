@@ -1,0 +1,50 @@
+debug: false
+management.endpoints.web.exposure.include: "*"
+
+logging:
+  level:
+    com.fastcampus.projectboardadmin: debug
+    org.springframework.web.servlet: debug
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+    org.springframework.web.client.RestTemplate: debug
+
+spring:
+  application:
+    name: pass-web
+    # datasource 정보는 .properties에서 비밀리에 관리
+  jpa:
+    # 규모가 작아서 True 로 설정. 관련 내용 https://gracelove91.tistory.com/100
+    open-in-view: true
+    defer-datasource-initialization: true
+    hibernate.ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate.format_sql: true
+      hibernate.default_batch_fetch_size: 100
+  thymeleaf:
+    cache: false
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            # client-id, client-secret 정보는 .properties에서 비밀리에 관리
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/kakao"
+            client-authentication-method: POST
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize # 인가 코드 받기 URL
+            token-uri: https://kauth.kakao.com/oauth/token # 토큰 받기 URL
+            user-info-uri: https://kapi.kakao.com/v2/user/me # 사용자 정보 가져오기 URL
+            user-name-attribute: id
+  batch:
+    job:
+      enabled: false # 기본값 true는 Spring Boot 실행 시 등록되어 있는 Job들이 실행됩니다.
+    jdbc:
+      # Batch에 사용되는 SQL 초기화 스크립트를 실행합니다. 임베디드인 경우에는 기본적으로 실행하는데, always 설정을 하면 임베디드 타입처럼 항상 활성화시킬 수 있습니다.
+      # 초기 수행한 이후에는 꺼두어도 됩니다.
+      initialize-schema: always
+
+      # 비교적 높은 일관성을 유지하기 위해
+      isolation-level-for-create: REPEATABLE_READ
