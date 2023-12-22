@@ -9,7 +9,6 @@ env:
   DOCKER_IMAGE_NAME: dlrkehrud/pass-web
   EC2_HOST: 13.209.12.93
   EC2_SSH_USER: ec2-user
-  PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
 
 jobs:
   build-and-push-docker:
