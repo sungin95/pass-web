@@ -9,6 +9,9 @@ env:
   DOCKER_IMAGE_NAME: dlrkehrud/pass-web
   EC2_HOST: 13.209.12.93
   EC2_SSH_USER: ec2-user 
+  CONTAINER_NAME: pass-web
+  DOCKER_HUB: dlrkehrud
+  
 
 jobs:
   build-and-push-docker:
@@ -64,5 +67,5 @@ jobs:
             sudo docker rm $CONTAINER_ID
           fi
 
-          sudo docker pull ${{ env.DOCKER_HUB }}
+          sudo docker pull ${{ env.DOCKER_IMAGE_NAME }}:latest
           sudo docker run --name ${{ env.CONTAINER_NAME }} -d -p 80:8080 -e TZ=Asia/Seoul ${{ env.DOCKER_HUB }}
