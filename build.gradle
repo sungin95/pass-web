@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.fastcampus.pass'
-version = '0.0.1-SNAPSHOT'
+version = 'v1.1'
 
 java {
     sourceCompatibility = '17'
@@ -37,10 +37,6 @@ dependencies {
     // lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-
-    // mapstruct
-    implementation 'org.mapstruct:mapstruct:1.5.2.Final'
-    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.2.Final'
 
     // common-lang3
     implementation 'org.apache.commons:commons-lang3:3.12.0'
